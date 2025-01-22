@@ -101,7 +101,6 @@ function App() {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 fullWidth
-                color={darkMode?'white':'#222'}
                 error = {isError}
               />
               {
