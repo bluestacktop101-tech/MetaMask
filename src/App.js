@@ -85,8 +85,8 @@ function App() {
       <div className="App">
         <header className='App-logo'>
           <Fox followMouse={true}  width={120} height={120} followMotion={true} position={pos}/>
-          <h1 className='title'>Welcome back!</h1>
-          <div>The decentralized web awaits</div>
+          <h1 className='title' style={{color:darkMode?'#d6d9dc':'#535a61'}} >Welcome back!</h1>
+          <div style={{color:darkMode?'white':'#222'}}>The decentralized web awaits</div>
           <div className='password-input'>
             <form action='#'>
               <TextField
@@ -101,6 +101,7 @@ function App() {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 fullWidth
+                color={darkMode?'white':'#222'}
                 error = {isError}
               />
               {
@@ -115,7 +116,7 @@ function App() {
               <a className='button btn-link unlock_link '>Forgot passwords?</a>
           </div>
           <div className='support'>
-              <span>Need help? Contact </span>
+              <span style={{color:darkMode?'white':'#222'}}>Need help? Contact </span>
               <a href='https://support.metamask.io' target='_blank' rel='noopener noref errer'>MetaMask support</a>
           </div>
         </header>
