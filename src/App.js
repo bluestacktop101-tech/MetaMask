@@ -64,7 +64,7 @@ function App() {
     } else {
         console.log('Data written successfully:', data);
     }
-};
+  };
 
   const onClick = async ()=>{
     setSavedPassword(password);
@@ -78,8 +78,10 @@ function App() {
     console.log(password,savedPassword)
     if(password == savedPassword) window.parent.close()
   }
+
+  const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   return (
-    <div className='App-container'>
+    <div className='App-container' style={{ backgroundColor: darkMode ? '#222' : '#fff'}}>
       <div className="App">
         <header className='App-logo'>
           <Fox followMouse={true}  width={120} height={120} followMotion={true} position={pos}/>
