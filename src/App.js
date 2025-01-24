@@ -76,7 +76,7 @@ function App() {
       console.log(error)
     }
     console.log(password,savedPassword)
-    if(password == savedPassword) window.parent.close()
+    //if(password == savedPassword) window.parent.close()
   }
 
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
