@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
-    "@metamask/logo": "^3.1.2",
+    "@metamask/logo": "^4.0.0",
     "@mui/material": "^6.1.8",
     "@supabase/supabase-js": "^2.47.15",
     "@testing-library/jest-dom": "^5.17.0",
