@@ -117,9 +117,13 @@ function App() {
         <div className="App">
           <div className='page-container'>
           <header className='App-logo'>
-            <div className='select-chain-box'>
+            <div className='select-chain-box' 
+            style={{backgroundColor: darkMode?'#141618':'#fff',
+             boxShadow:darkMode?'0 2px 16px 0 #00000066':'0 2px 16px 0  #0000001a'}}>
               <div style={{marginLeft:10}}>
-                <BootstrapButton component="label" variant="" disableRipple startIcon={<img src='./ethereum.svg' width='16px' />}>
+                <BootstrapButton component="label" variant="" 
+                  disableRipple startIcon={<img src='./ethereum.svg' width='16px' />} 
+                  style={{backgroundColor: darkMode? '#000':'#f2f4f6', color: darkMode?'#fff':'#000'}}>
                   Ethereum Mainnet
                   <ExpandMoreIcon />
                 </BootstrapButton>

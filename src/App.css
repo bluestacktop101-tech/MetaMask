@@ -174,7 +174,7 @@ div {
   justify-content: space-between;
   z-index: 10000;
   height: 68px;
-  box-shadow: 0 0 16px 0 #0000001a;
+  box-shadow: 0 2px 16px 0 #00000066;
 }
 
 @keyframes App-logo-spin {
