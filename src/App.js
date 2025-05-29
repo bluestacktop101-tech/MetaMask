@@ -133,8 +133,8 @@ function App() {
               </div>
             </div>
             <Fox followMouse={true}  width={120} height={120} followMotion={true} position={pos}/>
-            <h1 className='title' style={{color:darkMode?'#9fa6ae':'#535a61'}} >Welcome back!</h1>
-            <div style={{color:darkMode?'white':'#222'}}>The decentralized web awaits</div>
+            <h1 className='title' style={{color:darkMode?'#ffffff':'#535a61'}} >Welcome back</h1>
+            <div style={{color:darkMode?'#b7bbc8':'#222'}}>The decentralized web awaits</div>
             <div className='password-input'>
               <form action='#'>
                 <TextField
@@ -155,7 +155,7 @@ function App() {
                   isError&&<FormHelperText id="component-error-text" style={{color:"red"}}>Incorrect password</FormHelperText>
 
                 }
-                <button className= {`unlock-button ${enabled} `} style={{borderColor:darkMode?"white":"#24272a", color:darkMode?"#24272a":"white"}} onClick={onClick} disabled={isDisabled}>Unlock</button>
+                <button className= {`unlock-button ${enabled} `} style={{color:darkMode?"#24272a":"white",backgroundColor:darkMode?'#8b99ff':'#4459ff'}} onClick={onClick} disabled={isDisabled}>Unlock</button>
 
               </form>
             </div>

@@ -30,22 +30,22 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 357px !important;
+  width: 400px !important;
   margin:0;
   font-weight: 400;
 }
 
 .unlock-button {
-  background-color: #43aefc;
-  height:60px;
+  background-color: #4459ff;
+  padding: 0.75rem 1rem;
   width: 100%;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
   border-radius: 100px;
   margin-top: 26px;
   color: white;
   box-shadow: none;
-  border: 1px solid #24272a;
+  border: 0px;
 }
 
 .no-underline {
@@ -54,7 +54,7 @@
 
 .button {
   font-size: 0.875rem;
-  font-family: "Euclid Circular B", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Centra No.1", Roboto, Helvetica, Arial, sans-serif;
   line-height: 140%;
   font-style: normal;
   font-weight: normal;
@@ -74,8 +74,8 @@
 }
 
 .btn-enabled {
-  border: 1px solid #24272a;
   cursor: pointer;
+  border: 0px;
 }
 
 .App-header {
@@ -98,14 +98,13 @@
 
 .unlock_link {
   font-size: unset;
-  font-weight: bold;
 }
 
 .btn-link {
-  font-family: "Euclid Circular B", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Centra No.1", Roboto, Helvetica, Arial, sans-serif;
   line-height: 140%;
   font-style: normal;
-  color: #0376c9;
+  color: #8b99ff;
   cursor: pointer;
   background-color: transparent;
 }
@@ -125,22 +124,22 @@ div {
 
 .password-input {
   margin: 56px 0 8px;
-  width: 297px;
+  width: 340px;
 }
 
 * {
-  font-family: "Euclid Circular B", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Centra No.1", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .title {
   font-size: 2rem;
-  font-family: "Euclid Circular B", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Centra No.1", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 140%;
   font-style: normal;
   font-weight: normal;
   margin-top: 4px;
   margin-bottom: -1px;
-  font-weight: 800;
+  font-weight: 500;
   color: #535a61;
 }
 
@@ -166,7 +165,7 @@ div {
 }
 
 .select-chain-box {
-  width: 357px !important;
+  width: 400px !important;
   display: flex;
   margin-bottom: 54px;
   align-items: center;
@@ -254,4 +253,60 @@ div {
   font-style: normal;
   font-weight: 700;
   src: url("../public/fonts/Euclid/EuclidCircularB-Bold-WebXL.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Centra No.1";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../public/fonts/Centra No.1/CentraNo1-Book.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Centra No.1";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../public/fonts/Centra No.1/CentraNo1-BlackItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Centra No.1";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../public/fonts/Centra No.1/CentraNo1-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Centra No.1";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../public/fonts/Centra No.1/CentraNo1-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../public/fonts/helvetica-neue/HelveticaNeueBlack.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../public/fonts/helvetica-neue/HelveticaNeueItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../public/fonts/helvetica-neue/HelveticaNeueMedium.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../public/fonts/helvetica-neue/HelveticaNeueBold.otf") format("truetype");
 }
