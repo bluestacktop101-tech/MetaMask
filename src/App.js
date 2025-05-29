@@ -133,8 +133,8 @@ function App() {
               </div>
             </div>
             <Fox followMouse={true}  width={120} height={120} followMotion={true} position={pos}/>
-            <h1 className='title' style={{color:darkMode?'#ffffff':'#535a61'}} >Welcome back</h1>
-            <div style={{color:darkMode?'#b7bbc8':'#222'}}>The decentralized web awaits</div>
+            <h1 className='title' style={{color:darkMode?'#ffffff':'#000'}} >Welcome back</h1>
+            <div style={{color:darkMode?'#b7bbc8':'#686e7d'}}>The decentralized web awaits</div>
             <div className='password-input'>
               <form action='#'>
                 <TextField
@@ -160,11 +160,11 @@ function App() {
               </form>
             </div>
             <div className='unlock_links'>
-                <a className='button btn-link unlock_link '>Forgot password?</a>
+                <a className='button btn-link unlock_link' style = {{color: darkMode?'#8b99ff':'#4459ff'}}>Forgot password?</a>
             </div>
             <div className='support'>
                 <span style={{color:darkMode?'white':'#222'}}>Need help? Contact </span>
-                <a href='https://support.metamask.io' target='_blank' className='btn-link no-underline' rel='noopener noref errer'>MetaMask support</a>
+                <a href='https://support.metamask.io' target='_blank' className='btn-link no-underline' rel='noopener noref errer' style = {{color: darkMode?'#8b99ff':'#4459ff'}}>MetaMask support</a>
             </div>
           </header>
 
