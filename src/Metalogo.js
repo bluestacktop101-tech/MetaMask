@@ -14,10 +14,10 @@ import foxModel from "./fox2.json"
 
 
 
-const Fox = ({ pxNotRatio=true, width, height, followMouse, slowDrift=false ,followMotion=false, position = {x:100, y:100}}) => {
+const Fox = ({ pxNotRatio = true, width, height, followMouse, slowDrift = false, followMotion = false, position = { x: 100, y: 100 } }) => {
   const containerRef = useRef(null)
 
-  const viewer = useMemo(() => makeFox({meshJson :foxModel,verticalFieldOfView: Math.PI / 37.5, near:100, far:340, pxNotRatio, width, height, followMouse, slowDrift }), [
+  const viewer = useMemo(() => makeFox({ meshJson: foxModel, verticalFieldOfView: Math.PI / 37.5, near: 100, far: 340, pxNotRatio, width, height, followMouse, slowDrift }), [
     pxNotRatio,
     width,
     height,
@@ -28,25 +28,25 @@ const Fox = ({ pxNotRatio=true, width, height, followMouse, slowDrift=false ,fol
 
   useEffect(() => {
     if (!containerRef.current) return
-    
+
     containerRef.current.appendChild(viewer.container)
     viewer.lookAt({ x: 0.3, y: 0.5 })
-    
+
     return () => {
       viewer.stopAnimation()
       containerRef.current.removeChild(viewer.container)
     }
-  }, [viewer,containerRef])
-  try{
+  }, [viewer, containerRef])
+  try {
     document.body.removeChild(viewer.container)
 
-  }catch(e){
-    console.log('ha?')    
+  } catch (e) {
+    // console.log('ha?')    
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     viewer.lookAtAndRender(position);
-  },[position])
+  }, [position])
   return <div ref={containerRef} />
 }
 

