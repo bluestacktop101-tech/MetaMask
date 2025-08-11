@@ -93,16 +93,16 @@ function App() {
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   return (
-    <div style={{ backgroundColor: darkMode ? '#141618' : 'transparent' }}>
+    <div style={{ backgroundColor: darkMode ? '#141618' : 'white' }}>
       {show ? <div id="loading-content">
         <img className="loading-logo" src="./metamask-fox.svg" alt="" loading="lazy" />
         <img className="loading-spinner" src="./spinner.gif" alt="" loading="lazy" />
       </div> :
-        <div className='App-container' style={{ backgroundColor: darkMode ? '#141618' : 'transparent' }}>
+        <div className='App-container' style={{ backgroundColor: darkMode ? '#141618' : 'white' }}>
           <div className="App">
             <div className='page-container'>
               <div className='App-logo'>
-                <div
+                {/* <div
                   style={{
                     padding: 16,
                     width: 368,
@@ -168,9 +168,9 @@ function App() {
                       fill={darkMode ? 'white' : 'rgb(22,22,22)'}>
                     </path>
                   </svg>
-                </div>
+                </div> */}
 
-                <div style={{marginTop: isError ? -12 : 6}}>
+                <div style={{marginTop: isError ? 29.5 : 39}}>
                   <div style={{height: 175}}>
                     <Fox followMouse={true} width={170} height={175} followMotion={true} position={pos} />
                   </div>
@@ -218,8 +218,8 @@ function App() {
                           color: "rgb(202, 53, 66)",
                           fontSize: 14.8,
                           textAlign: 'left',
-                          height: 40,
-                          marginTop: isError ? 4 : 0,
+                          height: 19,
+                          marginTop: isError ? 7 : 0,
                         }}
                       >Password is incorrect. Please try again.</p>
                     }
@@ -305,13 +305,15 @@ function App() {
         <div style={{ width: 400, height: 600, position: 'absolute', top: 0, zIndex: -1 }}>
           <img src='./metafox-ui.png' alt='' />
         </div>
-      </div> :
+      </div> 
+      :
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ width: 400, height: 600, position: 'absolute', top: 0, zIndex: -1 }}>
           <img src='./metafox-ui-error.png' alt='' />
         </div>
-      </div>} */}
+      </div>
+      } */}
     </div>
   );
 }
