@@ -21,7 +21,7 @@
 
 .App-container {
   display: flex;
-  height: 620px;
+  height: 600px;
   align-self: stretch;
   justify-content: center;
   flex: 1 0 auto;
@@ -147,7 +147,7 @@ div {
 
 #loading-content {
   overflow-x: hidden;
-  height: 620px;
+  height: 600px;
   display: flex;
   flex-direction: column;
 }
