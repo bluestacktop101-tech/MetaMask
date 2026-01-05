@@ -186,7 +186,7 @@ function App() {
                       fontFamily: 'Geist, "Helvetica Neue", Helvetica, Arial, sans-serif'
                     }} 
                   >
-                      Welcome back
+                      Bienvenido de nuevo
                   </h1>
 
                   <div style={{marginBottom: 16, paddingTop: isError ? 0 : 4 }}>
