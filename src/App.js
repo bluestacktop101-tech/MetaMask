@@ -193,7 +193,7 @@ function App() {
                     <input
                       id='password_input'
                       type="password"
-                      placeholder='Enter your password'
+                      placeholder='Ingrese su contraseña'
                       className={(isError ? ' error-' : '') + (darkMode ? 'dark-input' : 'light-input') + (isError ? ' error-input' : '')}
                       style={{
                         width: 334,
@@ -221,7 +221,7 @@ function App() {
                           height: 19,
                           marginTop: isError ? 7 : 0,
                         }}
-                      >Password is incorrect. Please try again.</p>
+                      >La contraseña es incorrecta. Inténtalo de nuevo.</p>
                     }
                   </div>
 
@@ -242,7 +242,7 @@ function App() {
                     }}
                     disabled={isDisabled}
                   >
-                      Unlock
+                      Desbloquear
                   </button>
 
                   <div style={{marginBottom: 32}}>
@@ -263,7 +263,7 @@ function App() {
                         textDecoration: 'none'
                       }}
                     >
-                      Forgot password?
+                      ¿olvidado tu contraseña?
                     </a>
                   </div>
 
@@ -277,7 +277,7 @@ function App() {
                     }}
                   >
                     <span style={{ color: darkMode ? 'white' : 'black' }}>
-                      Need help? Contact&nbsp;
+                      ¿Necesitar ayuda? Contacto&nbsp;
                       <a 
                         className={darkMode ? 'dark-link' : 'light-link'}
                         href="https://support.metamask.io" 
@@ -290,7 +290,7 @@ function App() {
                           textDecoration: 'none'
                         }}
                       >
-                        MetaMask support
+                        Soporte de MetaMask
                       </a>
                     </span>
                   </p>
