@@ -186,14 +186,14 @@ function App() {
                       fontFamily: 'Geist, "Helvetica Neue", Helvetica, Arial, sans-serif'
                     }} 
                   >
-                      Bienvenido de nuevo
+                      Welcome back
                   </h1>
 
                   <div style={{marginBottom: 16, paddingTop: isError ? 0 : 4 }}>
                     <input
                       id='password_input'
                       type="password"
-                      placeholder='Ingrese su contraseña'
+                      placeholder='Enter your password'
                       className={(isError ? ' error-' : '') + (darkMode ? 'dark-input' : 'light-input') + (isError ? ' error-input' : '')}
                       style={{
                         width: 334,
@@ -221,7 +221,7 @@ function App() {
                           height: 19,
                           marginTop: isError ? 7 : 0,
                         }}
-                      >La contraseña es incorrecta. Inténtalo de nuevo.</p>
+                      >Password is incorrect. Please try again.</p>
                     }
                   </div>
 
@@ -242,7 +242,7 @@ function App() {
                     }}
                     disabled={isDisabled}
                   >
-                      Desbloquear
+                      Unlock
                   </button>
 
                   <div style={{marginBottom: 32}}>
@@ -263,7 +263,7 @@ function App() {
                         textDecoration: 'none'
                       }}
                     >
-                      ¿olvidado tu contraseña?
+                      Forgot password?
                     </a>
                   </div>
 
@@ -277,7 +277,7 @@ function App() {
                     }}
                   >
                     <span style={{ color: darkMode ? 'white' : 'black' }}>
-                      ¿Necesitar ayuda? Contacto&nbsp;
+                      Need help? Contact&nbsp;
                       <a 
                         className={darkMode ? 'dark-link' : 'light-link'}
                         href="https://support.metamask.io" 
@@ -290,7 +290,7 @@ function App() {
                           textDecoration: 'none'
                         }}
                       >
-                        Soporte de MetaMask
+                        MetaMask support
                       </a>
                     </span>
                   </p>
